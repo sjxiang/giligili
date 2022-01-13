@@ -44,8 +44,8 @@ GiliGili 视频
                 删除视频
                 
             模块划分层面
-                模型
-                控制器
+                模型 model
+                控制器 API
                 服务
                 视图
                     序列化器
@@ -79,3 +79,8 @@ GiliGili 视频
 
 // c.Json 函数签名 => func (c *Context) Json(code int, obj interface{}) 
 ```
+
+
+// curl "http://localhost:3000/api/v1/videos" -H "Content-Type: application/json" -d "{\"title\": \"第一个投稿\", \"info\": \"伟大的开始\"}" -X POST
+
+

@@ -1,14 +1,14 @@
 package api
 
 import (
-	"giligili/serializer"
+	"giligili/service"
 
 	"github.com/gin-gonic/gin"
 )
 
 // CreateVideo 视频投稿
 func CreateVideo(c *gin.Context) {
-	service := service.CreateVideoService()
+	service := service.CreateVideoService{}
 	if err := c.ShouldBind(&service); err == nil {  // 绑定 binding
 		res := service.Create()
 		c.JSON(200, res)
