@@ -47,8 +47,7 @@ GiliGili 视频
                 模型 model
                 控制器 API
                 服务
-                视图
-                    序列化器
+                视图  => 序列化器
 
     前端
         vue、Node.js
@@ -73,14 +72,22 @@ GiliGili 视频
 
 
 
-[GIN-debug] POST   /api/v1/videos   --> giligili/api.CreateVideo (6 handlers)
-
-
 
 // c.Json 函数签名 => func (c *Context) Json(code int, obj interface{}) 
 ```
 
 
-// curl "http://localhost:3000/api/v1/videos" -H "Content-Type: application/json" -d "{\"title\": \"第一个投稿\", \"info\": \"伟大的开始\"}" -X POST
+
+CreateVideo
+POST   /api/v1/videos
+curl "http://localhost:3000/api/v1/videos" -H "Content-Type: application/json" -d "{\"title\": \"第一个投稿\", \"info\": \"伟大的开始\"}" -X POST
+
+
+ShowVideo
+GET /api/v1/video/:id
+curl "http://localhost:3000/api/v1/video/2"
+
+
+curl "http://localhost:3000/api/v1/videos"
 
 

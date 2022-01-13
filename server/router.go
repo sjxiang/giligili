@@ -20,19 +20,6 @@ func NewRouter() *gin.Engine {
 	// 路由
 	v1 := r.Group("/api/v1")
 	{
-
-		v1.POST("videos", api.CreateVideo)     // 投稿视频  
-		// curl "http://localhost:3000/api/v1/videos" 
-		// -H "Content-Type: application/json" 
-		// -d "{\"status\": 0, \"data\": null, \"msg\": \"pong\", \"error\": \"\"}" 
-		// -X POST
-		
-		// v1.GET("video/:id", api.ShowVideo)  // 视频详情
-		// v1.GET("videos", api.ListVideo)    // 视频列表
-		// v1.PUT("video/id", api.UpdateVideo) // 更新视频详情
-		// v1.DELETE("video/:id", api.DeleteVideo) // 删除视频
-
-
 		v1.POST("ping", api.Ping)    // localhost:3000/api/v1/ping 存活检查
 
 		// 用户登录
@@ -49,7 +36,12 @@ func NewRouter() *gin.Engine {
 			auth.GET("user/me", api.UserMe)
 			auth.DELETE("user/logout", api.UserLogout)
 		}
-
+        
+		v1.POST("videos", api.CreateVideo)     // 投稿视频 
+		v1.GET("video/:id", api.ShowVideo)  // 视频详情
+		v1.GET("videos", api.ListVideo)    // 视频列表
+		// v1.PUT("video/id", api.UpdateVideo) // 更新视频详情
+		// v1.DELETE("video/:id", api.DeleteVideo) // 删除视频
 	}
 	return r
 }

@@ -20,3 +20,14 @@ func BuildVideo(item model.Video) Video {
 	}
 }
 
+
+// BuildVideo 序列化视频列表
+func BuildVideos(items []model.Video) (videos []Video) {
+	for i := range items {
+		video := BuildVideo(items[i])
+		videos = append(videos, video)	
+	}
+	
+	return videos
+}
+

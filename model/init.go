@@ -34,6 +34,7 @@ func Database(connString string) {
 	if connString == "" || err != nil {
 		util.Log().Error("mysql lost: %v", err)
 		panic(err)
+		
 	}
 	sqlDB, err := db.DB()
 	if err != nil {
