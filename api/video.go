@@ -41,3 +41,28 @@ func ListVideo(c *gin.Context) {
 	}
 }
 
+
+
+// UpdateVideo 更新视频详情
+func UpdateVideo(c *gin.Context) {
+	service := service.UpdateVideoService{}
+	if err := c.ShouldBind(&service); err == nil {  // 绑定 binding
+		res := service.Update(c.Param("id"))
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+
+
+// DeleteVideo 删除视频
+func DeleteVideo(c *gin.Context) {
+	service := service.DeleteVideoService{}
+	if err := c.ShouldBind(&service); err == nil {  // 绑定 binding
+		res := service.Delete(c.Param("id"))
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}

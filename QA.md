@@ -87,7 +87,16 @@ ShowVideo
 GET /api/v1/video/:id
 curl "http://localhost:3000/api/v1/video/2"
 
-
+ListVideo
+GET /api/vi/videos
 curl "http://localhost:3000/api/v1/videos"
 
 
+UpdateVideo
+PUT /api/v1/video/:id
+curl "http://localhost:3000/api/v1/video/2" -H "Content-Type: application/json" -d "{\"title\": \"第100个投稿\", \"info\": \"伟大的开始\"}" -X PUT
+
+
+DeleteVideo
+Delete /api/v1/video/:id
+curl "http://localhost:3000/api/v1/video/2" -X DELETE
