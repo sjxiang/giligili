@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"giligili/pkg/serializer"
 	"giligili/app/http/controllers/api/v1/video"
+	base "giligili/app/http/controllers/api/v1"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,23 +12,17 @@ func RegisterApiRoutes(r *gin.Engine) {
 
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/ping", func(c *gin.Context) {
-			c.JSON(200, serializer.Response{
-				Code: 0,
-				Msg: "pong",
-			})
-		})
+		v1.GET("/ping", base.Ping)
 
 
 		vc := new(video.VideoController)
 
-		v1.POST("videos", vc.CreateVideo)
-			// v1.GET("videos/:id", vc.ShowVideo)
-			// v1.GET("videos", vc.ListVideo)
-			// v1.PUT("videos/:id", vc.UpdateVideo)
-			// v1.DELETE("videos/:id", vc.DeleteVideo)
-		
-
+		v1.POST("/videos", vc.CreateVideo)
+		v1.GET("/video/:id", vc.ShowVideo)
+		v1.GET("/videos", vc.ListVideo)
+		v1.PUT("/videos/:id", vc.UpdateVideo)
+		v1.DELETE("/video/:id", vc.DeleteVideo)
+	
 	}
 }
 

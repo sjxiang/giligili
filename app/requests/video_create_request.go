@@ -13,7 +13,7 @@ type CreateVideoRequest struct {
 }
 
 
-// Create 创建视频
+// CreateVideo 创建视频
 func CreateVideo(data interface{}, c *gin.Context) map[string][]string {
 	rules := govalidator.MapData{
 		"title": []string{"required", "min:2", "max:30"},

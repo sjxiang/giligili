@@ -20,3 +20,17 @@ type Video struct {
 func (videoModel *Video) Create() {
 	database.DB.Create(&videoModel)
 } 
+
+func (videoModel *Video) Show(id string) error {
+	err := database.DB.First(videoModel, id).Error
+	return err
+}
+
+
+// GetByID 通过 id 来获取视频详情
+func GetByID(id string) (videoModel Video) {
+	database.DB.Where("id = ?", id).First(&videoModel)
+	return
+}
+
+

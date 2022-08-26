@@ -1,24 +1,11 @@
-# Singo
+## giligili
 
-Singo: Simple Single Golang Web Service
 
-go-crud正式改名为Singo!
-
-使用Singo开发Web服务: 用最简单的架构，实现够用的框架，服务海量用户
-
-## 视频实况教程
-
-[让我们写个G站吧！Golang全栈编程实况](https://space.bilibili.com/10/channel/detail?cid=78794)
-
-## 使用Singo开发的项目实例
-
-仿B站的G站：https://github.com/Gourouting/giligili
-
-Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/singo-token-exmaple
 
 ## 目的
 
 本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
+
 
 ## 特色
 
@@ -33,6 +20,7 @@ Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/sing
 7. 自行实现了国际化i18n的一些基本功能
 8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证 后续改成 JWT
 
+
 本项目已经预先实现了一些常用的代码方便参考和复用:
 
 1. 创建了用户模型
@@ -40,6 +28,7 @@ Singo框架为移动端提供Token登录的案例: https://github.com/bydmm/sing
 3. 实现了```/api/v1/user/login```用户登录接口
 4. 实现了```/api/v1/user/me```用户资料接口(需要登录后获取session)
 5. 实现了```/api/v1/user/logout```用户登出接口(需要登录后获取session)
+
 
 本项目已经预先创建了一系列文件夹划分出下列模块:
 
@@ -65,20 +54,12 @@ SESSION_SECRET="setOnProducation" # Seesion密钥，必须设置而且不要泄�
 GIN_MODE="debug"
 ```
 
-## Go Mod
-
-本项目使用[Go Mod](https://github.com/golang/go/wiki/Modules)管理依赖。
-
-```shell
-go mod init go-crud
-export GOPROXY=http://mirrors.aliyun.com/goproxy/
-go run main.go // 自动安装
-```
 
 ## 运行
 
 ```shell
-go run main.go
+go mod tidy
+make run
 ```
 
 项目运行后启动在3000端口（可以修改，参考gin文档)
@@ -91,6 +72,13 @@ go run main.go
 视频列表
 更新视频
 删除视频
+
+
+
+## 前端
+
+
+
 
 
 # 模块划分

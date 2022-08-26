@@ -1,4 +1,4 @@
-package requests
+package user
 
 // import (
 // 	"singo/model"
