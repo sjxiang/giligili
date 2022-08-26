@@ -2,21 +2,17 @@ package user
 
 import (
 	"gorm.io/gorm"
-
-	"giligili/app/model"
 )
 
 // User 用户模型
 type User struct {
 	gorm.Model
 
-	model.BaseModel
-	UserName       string ``
+	UserName       string 
 	PasswordDigest string
 	Nickname       string
 	Status         string
 	Avatar         string `gorm:"size:1000"`
-	model.CommonTimestampsField
 }
 
 const (

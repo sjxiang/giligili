@@ -7,7 +7,7 @@ type Response struct {
 	Code  int         `json:"code"`
 	Data  interface{} `json:"data,omitempty"`
 	Msg   string      `json:"msg"`
-	Error string      `json:"error,omitempty"`
+	Error interface{}      `json:"error,omitempty"`
 }
 
 // TrackedErrorResponse 有追踪信息的错误响应
@@ -29,6 +29,7 @@ const (
 	CodeDBError = 50001
 	// CodeEncryptError 加密失败
 	CodeEncryptError = 50002
+
 	//CodeParamErr 各种奇奇怪怪的参数错误
 	CodeParamErr = 40001
 )
