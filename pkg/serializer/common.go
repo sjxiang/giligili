@@ -2,6 +2,7 @@ package serializer
 
 import "github.com/gin-gonic/gin"
 
+
 // Response 基础序列化器
 type Response struct {
 	Code  int         `json:"code"`

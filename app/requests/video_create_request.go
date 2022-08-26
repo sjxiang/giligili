@@ -5,17 +5,19 @@ import (
 	"github.com/thedevsaddam/govalidator"
 )
 
+
 // CreateVideoRequest 视频投稿请求
 type CreateVideoRequest struct {
 	Title string `json:"title" form:"title" valid:"title"`
 	Info  string `json:"info"  form:"info"  valid:"info"`
 }
 
+
 // Create 创建视频
 func CreateVideo(data interface{}, c *gin.Context) map[string][]string {
 	rules := govalidator.MapData{
 		"title": []string{"required", "min:2", "max:30"},
-		"info": []string{ "min:0", "max:200"},
+		"info":  []string{ "min:0", "max:200"},
 	}
 
 	messages := govalidator.MapData{

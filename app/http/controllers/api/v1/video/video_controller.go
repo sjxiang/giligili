@@ -2,6 +2,7 @@ package video
 
 import (
 	"giligili/app/http/controllers/api/v1"
+	"giligili/app/model/video"
 	"giligili/app/requests"
 	"giligili/pkg/serializer"
 
@@ -24,10 +25,19 @@ func (v VideoController) CreateVideo(c *gin.Context) {
 	}
 
 	// 2. 验证成功，创建数据
+	videoModel := video.Video{
+		Title: request.Title,
+		Info: request.Info,
+	}
+	videoModel.Create()
 
-	
+	if videoModel.ID > 0 {
+		c.JSON(200, serializer.BuildVideoResponse(videoModel))
+		return
+	}
+
 	c.JSON(200, serializer.Response{
-		Code: 0,
-		Msg: "成功",
+		Code: 50001,
+		Msg: "视频保存失败，请稍后再试。",
 	})
 }
