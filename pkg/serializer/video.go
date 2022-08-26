@@ -11,20 +11,33 @@ type Video struct {
 	CreatedAt int64  `json:"created_at"`
 }
 
-// BuildVideo 序列化用户
-func BuildVideo(video video.Video) Video {
+// BuildVideo 序列化视频
+func BuildVideo(item video.Video) Video {
 	return Video{
-		ID: video.ID,
-		Title: video.Title,
-		Info: video.Info,
-		CreatedAt: video.CreatedAt.Unix(),  // Unix 时间戳
+		ID: 		item.ID,
+		Title: 		item.Title,
+		Info: 		item.Info,
+		CreatedAt:  item.CreatedAt.Unix(),  // Unix 时间戳
 	}
 }
 
 // BuildVideoResponse 序列化视频响应
-func BuildVideoResponse(video video.Video) Response {
+func BuildVideoResponse(item video.Video) Response {
 	return Response{
 		Msg: "创建视频成功",
-		Data: BuildVideo(video),
+		Data: BuildVideo(item),
 	}
+}
+
+
+// BuildVideos 序列化视频列表
+func BuildVideos(items []video.Video) (videos []Video) {
+
+	for _, item := range items {
+
+		video := BuildVideo(item)
+		videos = append(videos, video)
+	}
+
+	return 
 }

@@ -6,6 +6,7 @@ import (
 	"giligili/app/http/controllers/api/v1"
 	"giligili/app/model/video"
 	"giligili/app/requests"
+	"giligili/pkg/database"
 	"giligili/pkg/serializer"
 
 	"github.com/gin-gonic/gin"
@@ -53,7 +54,7 @@ func (vc VideoController) ShowVideo(c *gin.Context) {
 	
 	err := videoModel.Show(id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, serializer.Response{
+		c.JSON(http.StatusBadRequest, serializer.Response{
 			Code: 404,
 			Msg: "视频不存在", 
 			Error: err,
@@ -76,8 +77,22 @@ func (vc VideoController) ShowVideo(c *gin.Context) {
 // ListVideo 视频列表
 func (vc VideoController) ListVideo(c *gin.Context) {
 
+	var videoModels []video.Video
+	
+	err := database.DB.Find(&videoModels).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, serializer.Response{
+			Code: 50000,
+			Msg: "数据库连接错误",
+			Error: err,
+		})
 
-
+		return 
+	}
+ 
+	c.JSON(http.StatusOK, serializer.Response{
+		Data: serializer.BuildVideos(videoModels),
+	})
 }
 
 

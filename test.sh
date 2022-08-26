@@ -12,8 +12,12 @@ curl 'http://localhost:3000/api/v1/video/2'
 
 
 # 视频列表
+curl 'http://localhost:3000/api/v1/videos'
+
 
 # 视频详情更新
+
+
 
 # 视频删除
 

@@ -55,6 +55,23 @@ GIN_MODE="debug"
 ```
 
 
+
+
+## 准备工作
+
+```sql
+
+CREATE DATABASE IF NOT EXISTS `giligili` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+
+USE `giligili`;
+
+DROP TABLE IF EXISTS `users`;
+
+show create table users\G
+
+describe users;
+```
+
 ## 运行
 
 ```shell
@@ -66,24 +83,19 @@ make run
 
 
 ## 接口 API 
-
+```
 投稿视频
 视频详情
 视频列表
 更新视频
 删除视频
-
-
-
-## 前端
-
-
-
+```
 
 
 # 模块划分
-
+```
 模型
 控制器 一组
 服务 数据校验 数据处理
 视图 序列化器 数据组装，返回统一的 response
+```
