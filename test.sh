@@ -11,15 +11,18 @@ curl --request POST 'http://localhost:3000/api/v1/videos' \
 curl 'http://localhost:3000/api/v1/video/2'
 
 
-# 视频列表
-curl 'http://localhost:3000/api/v1/videos'
 
 
 # 视频详情更新
+
+curl --request PUT 'http://localhost:3000/api/v1/video/2' \
+--header 'Content-Type: application/json' \
+--data-raw '{"title": "第二个视频投稿", "info": "华语天后"}'
 
 
 
 # 视频删除
 
 
+curl --request DELETE 'http://localhost:3000/api/v1/video/2' 
 

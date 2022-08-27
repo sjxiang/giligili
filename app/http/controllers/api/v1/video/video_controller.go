@@ -79,7 +79,7 @@ func (vc VideoController) ListVideo(c *gin.Context) {
 
 	var videoModels []video.Video
 	
-	err := database.DB.Find(&videoModels).Error
+	err := database.DB.Find(&videoModels).Error  // （应该区分错误。数据库查询错误、语法错误 ... ）
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, serializer.Response{
 			Code: 50000,
@@ -100,14 +100,77 @@ func (vc VideoController) ListVideo(c *gin.Context) {
 // UpdateVideo 视频更新
 func (vc VideoController) UpdateVideo(c *gin.Context) {
 
+	// 1. 先查询，有没有这个 video 投稿	
+	id := c.Param("id")
+	var videoModel video.Video
+	
+	err := videoModel.Show(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, serializer.Response{
+			Code: 404,
+			Msg: "视频不存在", 
+			Error: err,
+		})
+		
+		return 
+	}
 
+	
+	// 2. 验证表单
+	request := requests.UpdateVideoRequest{}
+	if ok := requests.Validate(c, &request, requests.UpdateVideo); !ok {
+		return
+	}
 
+	// 3. 验证成功，更新数据
+	videoModel.Title = request.Title
+	videoModel.Info = request.Info
+	database.DB.Save(&videoModel)
+
+	err = database.DB.Save(&videoModel).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, serializer.Response{  // 500 服务器内部错误
+			Code: 50001,
+			Msg: "视频保存失败，请稍后再试。",
+		})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, serializer.BuildVideoResponse(videoModel))
 }
 
 
 // DeleteVideo 视频删除   
 func (vc VideoController) DeleteVideo(c *gin.Context) {
+	
+	// 1. 先查询，有没有这个 video 投稿	
+	id := c.Param("id")
+	var videoModel video.Video
 
+	err := videoModel.Show(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, serializer.Response{
+			Code: 404,
+			Msg: "视频不存在", 
+			Error: err,
+		})
+		
+		return 
+	}
 
+	// 2. 删除
+	err = database.DB.Delete(&videoModel).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, serializer.Response{  // 500 服务器内部错误
+			Code: 50001,
+			Msg: "视频保存失败，请稍后再试。",
+		})
 
+		return
+	}
+
+	c.JSON(http.StatusOK, serializer.Response{
+		Msg: "删除视频成功",
+	})
 }

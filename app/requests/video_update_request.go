@@ -9,22 +9,29 @@ import (
 )
 
 
-// ShowVideoRequest 视频详情请求
-type ShowVideoRequest struct {
-	ID 	  string `json:"id" form:"id" valid:"id"`
+// UpdateVideoRequest 视频更新请求
+type UpdateVideoRequest struct {
+	Title string `json:"title" form:"title" valid:"title"`
+	Info  string `json:"info"  form:"info"  valid:"info"`
 }
 
 
-// ShowVideo 视频详情
-func ShowVideo(data interface{}, c *gin.Context) map[string][]string {
+// UpdateVideo 视频更新
+func UpdateVideo(data interface{}, c *gin.Context) map[string][]string {
 	rules := govalidator.MapData{
-		"id": []string{"required", "digits:int"},
+		"title": []string{"required", "min:2", "max:30"},
+		"info":  []string{ "min:0", "max:200"},
 	}
 
 	messages := govalidator.MapData{
 		"title": []string{
-			"required:id 为必填项",
-			"digits:id 格式错误，只能是数字且是整数",
+			"required: 标题为必填项",
+			"min: 长度需大于 2",
+			"max: 长度需小于 30",
+		},
+		"info": []string{
+			"min: 可以不填，为空",
+			"max: 长度需小于 200",
 		},
 	}
 

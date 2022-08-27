@@ -20,7 +20,7 @@ func RegisterApiRoutes(r *gin.Engine) {
 		v1.POST("/videos", vc.CreateVideo)
 		v1.GET("/video/:id", vc.ShowVideo)
 		v1.GET("/videos", vc.ListVideo)
-		v1.PUT("/videos/:id", vc.UpdateVideo)
+		v1.PUT("/video/:id", vc.UpdateVideo)
 		v1.DELETE("/video/:id", vc.DeleteVideo)
 	
 	}
