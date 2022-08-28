@@ -91,6 +91,13 @@ make run
 删除视频
 ```
 
+# 阿里云 oss 对象存储
+
+
+/api/v1/upload 向阿里云申请 1 个 Token
+
+
+
 
 # 模块划分
 ```
@@ -99,3 +106,20 @@ make run
 服务 数据校验 数据处理
 视图 序列化器 数据组装，返回统一的 response
 ```
+
+对象存储 minio`
+docker pull minio/minio:RELEASE.2021-06-17T00-10-46Z
+
+
+docker run -p 9000:9000 --name minio\
+  -e "MINIO_ACCESS_KEY=admin" \
+  -e "MINIO_SECRET_KEY=admin@qq.com" \
+  -v /usr/local/minio/data:/data \
+  -v /usr/local/minio/config:/root/.minio \
+  minio/minio:RELEASE.2021-06-17T00-10-46Z server /data
+
+
+redis 点击数
+跨域
+安全
+翻页

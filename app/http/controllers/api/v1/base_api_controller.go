@@ -3,6 +3,7 @@
 package v1
 
 import (
+	"giligili/app/requests"
 	"giligili/pkg/serializer"
 
 	"github.com/gin-gonic/gin"
@@ -19,3 +20,20 @@ func Ping(c *gin.Context) {
 		Msg: "Pong",
 	})
 }
+
+
+
+// Post 创建 Token
+func UploadToken(c *gin.Context) {
+	
+	// 1. 验证表单
+	request := requests.UploadTokenRequest{}
+	if ok := requests.Validate(c, &request, requests.UploadToken); !ok {
+		return
+	}
+
+	// 2. 验证成功，发送 Token
+	requests.SendToken(c, request)
+	
+}
+
