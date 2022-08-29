@@ -8,8 +8,10 @@ import (
 
 // CreateVideoRequest 视频投稿请求
 type CreateVideoRequest struct {
-	Title string `json:"title" form:"title" valid:"title"`
-	Info  string `json:"info"  form:"info"  valid:"info"`
+	Title  string `json:"title"  form:"title"  valid:"title"`
+	Info   string `json:"info"   form:"info"   valid:"info"`
+	URL    string `json:"url"    form:"url"    valid:"-"`
+	Avatar string `json:"avatar" form:"avatar" valid:"-"`
 }
 
 

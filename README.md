@@ -111,13 +111,15 @@ make run
 docker pull minio/minio:RELEASE.2021-06-17T00-10-46Z
 
 
-docker run -p 9000:9000 --name minio\
-  -e "MINIO_ACCESS_KEY=admin" \
-  -e "MINIO_SECRET_KEY=admin@qq.com" \
+docker run -p 9000:9000 --name minio --rm \
+  -e "MINIO_ROOT_USER=admin" \
+  -e "MINIO_ROOT_PASSWORD=admin123" \
   -v /usr/local/minio/data:/data \
   -v /usr/local/minio/config:/root/.minio \
   minio/minio:RELEASE.2021-06-17T00-10-46Z server /data
 
+
+MINIO_ROOT_USER 和 MINIO_ROOT_PASSWORD
 
 redis 点击数
 跨域

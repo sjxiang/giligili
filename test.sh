@@ -27,8 +27,12 @@ curl --request DELETE 'http://localhost:3000/api/v1/video/2'
 
 
 
-# 上传 token
+# 上传 token（例如 jisoo.jpg 拿到对象存储地址，这样可以上传或者下载）
 
-curl --request POST 'http://localhost:3000/api/v1/upload/token' \
---header 'Content-Type: application/json' \
---data-raw '{"filename": "n.jpg"}'
+curl --request POST 'http://localhost:3000/api/v1/upload' \
+-F "file=@/home/xsj/go/src/github.com/sjxiang/giligili/static/img/jisoo_2.jpg" \
+-H 'Content-Type: multipart/form-data' 
+
+
+
+

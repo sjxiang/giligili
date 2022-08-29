@@ -13,7 +13,7 @@ func RegisterApiRoutes(r *gin.Engine) {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/ping", base.Ping)
-		v1.POST("/upload/token", base.UploadToken)
+		v1.POST("/upload", base.PutImage)
 
 		vc := new(video.VideoController)
 

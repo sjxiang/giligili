@@ -23,6 +23,9 @@ func init() {
 	// 初始化 mysql
 	bootstrap.SetUpDB()
 
+	// 初始化 OSS
+	bootstrap.InitOSS()
+
 }
 
 
