@@ -4,9 +4,9 @@ import (
 	"os"
 	"strconv"
 
-	"giligili/pkg/util"
+	// "giligili/pkg/util"
 
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v8"
 )
 
 // RedisClient Redis缓存客户端单例
@@ -22,11 +22,11 @@ func SetupRedis() {
 		MaxRetries: 1,
 	})
 
-	_, err := client.Ping().Result()
+	// _, err := client.Ping().Result()
 
-	if err != nil {
-		util.Log().Panic("连接Redis不成功", err)
-	}
+	// if err != nil {
+	// 	util.Log().Panic("连接Redis不成功", err)
+	// }
 
 	RedisClient = client
 }
