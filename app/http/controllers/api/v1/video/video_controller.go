@@ -68,6 +68,9 @@ func (vc VideoController) ShowVideo(c *gin.Context) {
 		
 		return 
 	}
+	
+	// 处理视频被观看的一系列
+	videoModel.AddView() 
 
 	c.JSON(http.StatusOK, serializer.Response{
 		Data: serializer.BuildVideo(videoModel),
