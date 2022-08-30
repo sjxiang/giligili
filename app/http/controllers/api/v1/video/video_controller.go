@@ -29,13 +29,19 @@ func (v VideoController) CreateVideo(c *gin.Context) {
 
 	// 2. 验证成功，创建数据
 	videoModel := video.Video{
-		Title: request.Title,
-		Info: request.Info,
+		Title:  request.Title,
+		Info:   request.Info,
+		URL:    request.URL,
+		Avatar: request.Avatar,
 	}
 	videoModel.Create()
 
 	if videoModel.ID > 0 {
-		c.JSON(http.StatusOK, serializer.BuildVideoResponse(videoModel))
+		c.JSON(http.StatusOK, serializer.Response{
+			Msg: "创建视频成功",
+			Data: serializer.BuildVideo(videoModel),
+		})
+		
 		return
 	}
 
@@ -63,8 +69,10 @@ func (vc VideoController) ShowVideo(c *gin.Context) {
 		return 
 	}
 
-	c.JSON(http.StatusOK, serializer.BuildVideoResponse(videoModel))
-
+	c.JSON(http.StatusOK, serializer.Response{
+		Data: serializer.BuildVideo(videoModel),
+	})
+	
 	// videoModel := video.GetByID(id)
 
 	// if videoModel.ID == 0 {
@@ -137,7 +145,9 @@ func (vc VideoController) UpdateVideo(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, serializer.BuildVideoResponse(videoModel))
+	c.JSON(http.StatusOK, serializer.Response{
+		Data: serializer.BuildVideo(videoModel),
+	})
 }
 
 

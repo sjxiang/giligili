@@ -107,19 +107,19 @@ make run
 视图 序列化器 数据组装，返回统一的 response
 ```
 
-对象存储 minio`
-docker pull minio/minio:RELEASE.2021-06-17T00-10-46Z
+阿里云 OSS 对象存储 
 
+    后端只负责把签名返还给 vue，让前端处理（image/jpeg）上传（putURL）下载（getURL）。
 
-docker run -p 9000:9000 --name minio --rm \
-  -e "MINIO_ROOT_USER=admin" \
-  -e "MINIO_ROOT_PASSWORD=admin123" \
-  -v /usr/local/minio/data:/data \
-  -v /usr/local/minio/config:/root/.minio \
-  minio/minio:RELEASE.2021-06-17T00-10-46Z server /data
+    Postman 实现类似效果
+        即，
+        
+        Method [PUT] 
+        path [http://endpoint/upload%2Favatar%2F7dbdf8d7-d7a3-4fa9-953e-a49b49fa476b.jpg?Expires=1661797547\u0026OSSAccessKeyId=LTAI5t6yrAZBwLTDxdXqmrfM\u0026Signature=wmeZSKPeB2Va%2B6XsZGqSGwEB3T4%3D]
 
+        header [content-type: image/jpeg]
+        body [binary: ]
 
-MINIO_ROOT_USER 和 MINIO_ROOT_PASSWORD
 
 redis 点击数
 跨域

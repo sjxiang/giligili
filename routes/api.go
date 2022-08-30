@@ -1,8 +1,9 @@
 package routes
 
 import (
-	"giligili/app/http/controllers/api/v1/video"
 	base "giligili/app/http/controllers/api/v1"
+	"giligili/app/http/controllers/api/v1/video"
+	"giligili/app/http/controllers/api/v1/token"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,16 +14,17 @@ func RegisterApiRoutes(r *gin.Engine) {
 	v1 := r.Group("/api/v1")
 	{
 		v1.GET("/ping", base.Ping)
-		v1.POST("/upload", base.UploadToken)
+
+		tc := new(token.TokenController)
+		v1.POST("/upload/token", tc.UploadToken)
 
 		vc := new(video.VideoController)
-
 		v1.POST("/videos", vc.CreateVideo)
 		v1.GET("/video/:id", vc.ShowVideo)
 		v1.GET("/videos", vc.ListVideo)
 		v1.PUT("/video/:id", vc.UpdateVideo)
 		v1.DELETE("/video/:id", vc.DeleteVideo)
-	
+
 	}
 }
 

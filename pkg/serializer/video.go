@@ -8,8 +8,11 @@ type Video struct {
 	ID        uint   `json:"id"`
 	Title     string `json:"title"`
 	Info      string `json:"info"`
+	URL       string `json:"url"`
+	Avatar    string `json:"avatar"`
 	CreatedAt int64  `json:"created_at"`
 }
+
 
 // BuildVideo 序列化视频
 func BuildVideo(item video.Video) Video {
@@ -17,15 +20,9 @@ func BuildVideo(item video.Video) Video {
 		ID: 		item.ID,
 		Title: 		item.Title,
 		Info: 		item.Info,
+		URL:        item.URL,
+		Avatar:     item.AvatarURL(),  // 签名的 key 
 		CreatedAt:  item.CreatedAt.Unix(),  // Unix 时间戳
-	}
-}
-
-// BuildVideoResponse 序列化视频响应
-func BuildVideoResponse(item video.Video) Response {
-	return Response{
-		Msg: "创建视频成功",
-		Data: BuildVideo(item),
 	}
 }
 
@@ -39,5 +36,5 @@ func BuildVideos(items []video.Video) (videos []Video) {
 		videos = append(videos, video)
 	}
 
-	return 
+	return videos
 }
