@@ -26,7 +26,7 @@ func RegisterApiRoutes(r *gin.Engine) {
 		v1.DELETE("/video/:id", vc.DeleteVideo)
 
 		// 排行榜
-		v1.POST("/rank/daily", base.DailyRank)
+		v1.GET("/rank/daily", base.DailyRank)
 	}
 }
 
