@@ -116,8 +116,8 @@ func (rds RedisClient) Increment(params ...interface{}) bool {
 
 
 
-// ZIncrBy
-func (rds RedisClient) ZIncrBy(key string, value float64, member string) bool {
+// ZIncrementBy
+func (rds RedisClient) ZIncrementBy(key string, value float64, member string) bool {
 	if err := rds.Client.ZIncrBy(rds.Context, key, value, member).Err(); err != nil {
 		util.Log().Error("Redis", "ZIncrBy", err.Error())
 		return false		

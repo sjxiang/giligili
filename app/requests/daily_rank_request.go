@@ -6,6 +6,7 @@ import (
 
 )
 
+
 // UploadToken 获得上传 oss token 的请求
 type UploadTokenRequest struct {
 	Filename string `json:"filename" form:"filename" valid:"filename"`

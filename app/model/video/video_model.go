@@ -69,7 +69,7 @@ func (videoModel *Video) AddView() {
 	} 
 
 	// 增加排行点击数
-	if ok := cache.Redis.ZIncrBy(cache.DailyRankKey, 1, cache.VideoViewKey(videoModel.ID)); !ok {
+	if ok := cache.Redis.ZIncrementBy(cache.DailyRankKey, 1, strconv.Itoa(int(videoModel.ID))); !ok {
 		util.Log().Error("增加排行榜点击数，失效")
 	} 
 }

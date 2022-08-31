@@ -8,9 +8,11 @@ curl --request POST 'http://localhost:3000/api/v1/videos' \
 
 
 # 视频详情
-curl 'http://localhost:3000/api/v1/video/2'
+curl 'http://localhost:3000/api/v1/video/4'
 
+# 视频列表
 
+curl 'http://localhost:3000/api/v1/videos'
 
 # 视频详情更新
 
@@ -31,3 +33,8 @@ curl --request DELETE 'http://localhost:3000/api/v1/video/2'
 
 curl --request POST 'http://localhost:3000/api/v1/upload/token' 
 
+
+
+# 视频排行榜
+
+curl --request POST 'http://localhost:3000/api/v1/rank/daily'

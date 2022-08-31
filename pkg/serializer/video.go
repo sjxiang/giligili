@@ -10,6 +10,7 @@ type Video struct {
 	Info      string `json:"info"`
 	URL       string `json:"url"`
 	Avatar    string `json:"avatar"`
+	View      uint64 `json:"view"`  // Redis
 	CreatedAt int64  `json:"created_at"`
 }
 
@@ -22,6 +23,7 @@ func BuildVideo(item video.Video) Video {
 		Info: 		item.Info,
 		URL:        item.URL,
 		Avatar:     item.AvatarURL(),  // 签名的 key 
+		View:       item.View(),
 		CreatedAt:  item.CreatedAt.Unix(),  // Unix 时间戳
 	}
 }
